@@ -4,7 +4,6 @@ def call () {
 
     node("builder") {
 
-        stage('Parse') {
             echo "RAW JSON: ${env.JSON_PAYLOAD ?: 'JSON_PAYLOAD is null'}"
 
             if (env.JSON_PAYLOAD) {
@@ -14,6 +13,5 @@ def call () {
             } else {
                 error "No JSON payload received!"
             }
-        }
     }
 }
