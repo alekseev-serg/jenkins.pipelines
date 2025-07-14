@@ -1,8 +1,9 @@
 node {
 
-    sh "echo ${env.JSON_PAYLOAD}"
+    stage('Debug Env') {
+        sh 'printenv | sort'
+    }
 
-    // def ctx = init(webhookPayload)
 
     stage('List Files') {
         echo "Project directory contents:"
