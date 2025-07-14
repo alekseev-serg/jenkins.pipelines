@@ -1,6 +1,6 @@
 def call () {
 
-    node("Builder") {
+    node("builder") {
         def webhookPayload = readJSON text: env.JSON_PAYLOAD;
 
         echo "${webhookPayload}"
