@@ -4,14 +4,10 @@ def call () {
 
     node("builder") {
 
-            echo "RAW JSON: ${env.JSON_PAYLOAD ?: 'JSON_PAYLOAD is null'}"
+        echo "RAW JSON: ${env.JSON_PAYLOAD ?: 'JSON_PAYLOAD is null'}"
 
-            if (env.JSON_PAYLOAD) {
-                def json = new JsonSlurper().parseText(env.JSON_PAYLOAD)
-                echo "Repo: ${json.repository?.ssh_url}"
-                echo "Ref: ${json.ref}"
-            } else {
-                error "No JSON payload received!"
-            }
+        if (env.JSON_PAYLOAD) {
+            def webhookPayload = new JsonSlurper().parseText(env.JSON_PAYLOAD)
+        } 
     }
 }
