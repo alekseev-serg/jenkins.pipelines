@@ -1,14 +1,15 @@
 node {
-    stage('Clone FastAPI Repo') {
-        def repoUrl = 'git@github.com:alekseev-serg/devops-wiki-api.git'
-        def branch = 'main'
+    properties([
+        parameters ([
+            string(name: 'JSON_PAYLOAD', description: 'Generic body state'),
+            string(name: 'JSON_QUERY', description: 'Generic query state'),
+        ]),
+    ]);
+    
+    def webhookPayload = readJSON text: env.JSON_PAYLOAD;
+    def webhookQuery = readJSON text: env.JSON_QUERY;
 
-        echo "Cloning ${repoUrl} (branch: ${branch})"
-        // Очищаем рабочую директорию перед сборкой
-        deleteDir()
-        // Клонируем репозиторий
-        git branch: branch, url: repoUrl
-    }
+    def ctx = init(webhookPayload)
 
     stage('List Files') {
         echo "Project directory contents:"
