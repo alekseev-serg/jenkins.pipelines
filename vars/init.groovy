@@ -9,7 +9,7 @@ def call(webhookPayload){
     appName = webhookPayload.repository.name
     
     return [
-        gitUrl: gitUrl
+        gitUrl: gitUrl,
         branch: branch,
         appName: appName,
     ];
