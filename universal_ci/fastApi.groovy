@@ -1,13 +1,6 @@
 node {
-    properties([
-        parameters ([
-            string(name: 'JSON_PAYLOAD', description: 'Generic body state'),
-            string(name: 'JSON_QUERY', description: 'Generic query state'),
-        ]),
-    ]);
-    
-    def webhookPayload = readJSON text: env.JSON_PAYLOAD;
-    def webhookQuery = readJSON text: env.JSON_QUERY;
+
+    sh "env"
 
     def ctx = init(webhookPayload)
 
