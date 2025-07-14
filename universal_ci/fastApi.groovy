@@ -1,6 +1,6 @@
 node {
     stage('Clone FastAPI Repo') {
-        def repoUrl = 'git@github.com:your-user/devops-wiki-fastapi.git'
+        def repoUrl = 'git@github.com:alekseev-serg/devops-wiki-api.git'
         def branch = 'main'
 
         echo "Cloning ${repoUrl} (branch: ${branch})"
