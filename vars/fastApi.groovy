@@ -5,7 +5,7 @@ def call () {
     node("builder") {
 
         if (env.JSON_PAYLOAD) {
-            def webhookPayload = new JsonSlurper().parseText(env.JSON_PAYLOAD)
+            def json = new JsonSlurper().parseText(env.JSON_PAYLOAD)
         }
 
         echo "${webhookPayload}"
