@@ -1,1 +1,3 @@
-// some pipeline 
+def call(){
+    echo "do pipeline"
+}
