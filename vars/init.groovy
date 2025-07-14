@@ -5,7 +5,7 @@ def call(webhookPayload){
     def appName;
 
     gitUrl = webhookPayload.repository?.ssh_url
-    branch = webhookPayload.ref.split(/)[-1]
+    branch = webhookPayload.ref.split('/')[-1]
     appName = webhookPayload.repository.name
     
     return [
