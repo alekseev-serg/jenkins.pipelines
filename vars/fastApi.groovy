@@ -8,9 +8,10 @@ def call () {
             def webhookPayload = new JsonSlurper().parseText(env.JSON_PAYLOAD)
         }
 
-        def context = init(webhookPayload);
+        echo "${webhookPayload}"
+        // def context = init(webhookPayload);
 
-        echo "${context.gitUrl}\n ${context.branch}\n ${context.appName}";
+        // echo "${context.gitUrl}\n ${context.branch}\n ${context.appName}";
 
     }
 }
