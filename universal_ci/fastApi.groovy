@@ -1,6 +1,6 @@
 node {
 
-    sh "env"
+    sh "echo ${JSON_PAYLOAD}"
 
     // def ctx = init(webhookPayload)
 
@@ -8,4 +8,5 @@ node {
         echo "Project directory contents:"
         sh 'ls -la'
     }
+
 }
