@@ -1,6 +1,6 @@
 node {
 
-    sh "echo ${JSON_PAYLOAD}"
+    sh "echo ${env.JSON_PAYLOAD}"
 
     // def ctx = init(webhookPayload)
 
