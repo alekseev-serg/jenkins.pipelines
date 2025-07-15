@@ -8,7 +8,10 @@ def call () {
         def webhookPayload = readJSON text: env.JSON_PAYLOAD
         def context = init(webhookPayload)
 
-        echo "${context.gitUrl}\n ${context.branch}\n ${context.appName}\n"
+        echo "GIT URL: ${context.gitUrl}"
+        echo "BRANCH: ${context.branch}"
+        echo "APP NAME: ${context.appName}"
+        echo "COMMIT: ${context.commit}"
 
         stage('Get source code') {
             checkout([
@@ -19,7 +22,19 @@ def call () {
                     credentialsId: 'git-ssh'
                 ]],
             ]);
-            sh "ls -la"
+        }
+
+        stage('Build app') {
+            def imageTag = "${context.appName}:${context.commit}"
+            sh """
+                docker build -t ${imageTag}
+            """
+        }
+
+        post {
+            always {
+                cleanWs()
+            }
         }
     }
 }
