@@ -5,12 +5,10 @@ def call () {
     node("builder") {
 
         echo "RAW JSON: ${env.JSON_PAYLOAD ?: 'JSON_PAYLOAD is null'}"
-
         def webhookPayload = readJSON text: env.JSON_PAYLOAD
-
         def context = init(webhookPayload)
 
-        echo "${context.gitUrl} ${context.branch} ${context.appName}"
+        echo "${context.gitUrl}\n ${context.branch}\n ${context.appName}\n"
 
         stage('Get source code') {
             checkout([
