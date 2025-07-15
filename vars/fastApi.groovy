@@ -16,16 +16,16 @@ def call () {
 
         echo "${gitUrl} ${branch} ${appName}"
 
-        // stage('Get source code') {
-        //     checkout([
-        //         $class: 'GitSCM',
-        //         branches: [[name: branch]],
-        //         userRemoteConfigs: [[
-        //             url: gitUrl,
-        //             credentialsId: 'git-ssh'
-        //         ]],
-        //     ]);
-        //     sh "ls -la"
-        // }
+        stage('Get source code') {
+            checkout([
+                $class: 'GitSCM',
+                branches: [[name: branch]],
+                userRemoteConfigs: [[
+                    url: gitUrl,
+                    credentialsId: 'git-ssh'
+                ]],
+            ]);
+            sh "ls -la"
+        }
     }
 }
