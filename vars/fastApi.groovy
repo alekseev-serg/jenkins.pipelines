@@ -10,9 +10,11 @@ def call () {
         def webhookPayload = readJSON text: env.JSON_PAYLOAD
 
 
-        // def gitUrl = webhookPayload.repository?.ssh_url
-        // def branch = webhookPayload.ref.tokenize('/').last()
-        // def appName = webhookPayload.repository?.name
+        def gitUrl = webhookPayload.repository?.ssh_url
+        def branch = webhookPayload.ref.tokenize('/').last()
+        def appName = webhookPayload.repository?.name
+
+        echo "${gitUrl} ${branch} ${appName}"
 
         // stage('Get source code') {
         //     checkout([
