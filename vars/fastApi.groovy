@@ -36,7 +36,7 @@ def call () {
                 sh """ 
                     echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
                     docker tag ${context.appName}:${context.commit} $DOCKER_USER/${context.appName}:latest
-                    docker push $DOCKER_USER/
+                    docker push $DOCKER_USER/${context.appName}:latest
                 """
             }
         }
