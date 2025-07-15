@@ -15,14 +15,15 @@ def call () {
         echo "${context.branch}"
         echo "${context.appName}"
 
-        // stage('Get source Code'){
-        //     checkout([
-        //         $class: 'GitSCM',
-        //         branches: [[name: ${context.branch}]]
-        //         userRemoteConfigs: [[
-        //             credentialsId: env
-        //         ]]
-        //     ])
-        // }
+        stage('Get source Code'){
+            checkout([
+                $class: 'GitSCM',
+                branches: [[name: ${context.branch}]]
+                userRemoteConfigs: [[
+                    credentialsId: env.GIT_SSH,
+                    url: ${context.gitUrl}
+                ]]
+            ]);
+        }
     }
 }
