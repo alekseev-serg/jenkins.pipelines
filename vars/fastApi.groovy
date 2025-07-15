@@ -15,11 +15,9 @@ def call () {
         echo "${context.branch}"
         echo "${context.appName}"
 
-        stage('Get source Code'){
-            sshagent (credentials: ['git-ssh']) {
-                sh "git clone -b ${context.branch} ${context.gitUrl}"
-            }
-            sh "ls -la"
+        sshagent (credentials: ['git-ssh']) {
+            sh "git clone -b ${context.branch} ${context.gitUrl}"
         }
+        sh "ls -la"
     }
 }
