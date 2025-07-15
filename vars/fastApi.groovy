@@ -27,7 +27,7 @@ def call () {
         stage('Build app') {
             def imageTag = "${context.appName}:${context.commit}"
             sh """
-                docker build -t ${imageTag}
+                docker build -t ${imageTag} .
             """
         }
 
