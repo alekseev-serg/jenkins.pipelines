@@ -3,6 +3,7 @@ import groovy.json.JsonSlurper
 def call () {
 
     node("builder") {
+        sh "env"
 
         echo "RAW JSON: ${env.JSON_PAYLOAD ?: 'JSON_PAYLOAD is null'}"
 
@@ -13,5 +14,15 @@ def call () {
         echo "${context.gitUrl}"
         echo "${context.branch}"
         echo "${context.appName}"
+
+        // stage('Get source Code'){
+        //     checkout([
+        //         $class: 'GitSCM',
+        //         branches: [[name: ${context.branch}]]
+        //         userRemoteConfigs: [[
+        //             credentialsId: env
+        //         ]]
+        //     ])
+        // }
     }
 }
