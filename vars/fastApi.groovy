@@ -31,6 +31,16 @@ def call () {
             """
         }
 
+        stage('Docker push') {
+            withCredentials([usernamePassword(credentialsId: 'docker-token', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                sh """ 
+                    echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+                    docker tag ${context.appName}:${context.commit} $DOCKER_USER/${context.appName}:latest
+                    docker push $DOCKER_USER/
+                """
+            }
+        }
+
         try {
             echo "DONE...)"
         } finally {
