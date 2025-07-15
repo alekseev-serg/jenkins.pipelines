@@ -15,9 +15,16 @@ def call () {
         echo "${context.branch}"
         echo "${context.appName}"
 
-        sshagent (credentials: ['git-ssh']) {
-            sh "git clone -b ${context.branch} ${context.gitUrl}"
+        stage('Get source code') {
+            checkout([
+                $class: 'GitSCM',
+                branches: [[name: context.branch]],
+                userRemoteConfigs: [[
+                    url: context.gitUrl,
+                    credentialsId: 'git-ssh'
+                ]],
+            ]);
+            sh "ls -la"
         }
-        sh "ls -la"
     }
 }
