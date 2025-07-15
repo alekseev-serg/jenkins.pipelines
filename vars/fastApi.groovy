@@ -31,10 +31,11 @@ def call () {
             """
         }
 
-        post {
-            always {
-                cleanWs()
-            }
+        try {
+            echo "DONE...)"
+        } finally {
+            echo "Cleaning workspace..."
+            cleanWs()
         }
     }
 }
