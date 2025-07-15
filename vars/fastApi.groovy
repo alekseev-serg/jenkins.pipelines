@@ -18,7 +18,7 @@ def call () {
         stage('Get source Code'){
             checkout([
                 $class: 'GitSCM',
-                branches: [[name: ${context.branch}]]
+                branches: [[name: ${context.branch}]],
                 userRemoteConfigs: [[
                     credentialsId: env.GIT_SSH,
                     url: ${context.gitUrl}
