@@ -7,23 +7,23 @@ def call () {
 
         echo "RAW JSON: ${env.JSON_PAYLOAD ?: 'JSON_PAYLOAD is null'}"
 
-        def webhookPayload = new JsonSlurper().parseText(env.JSON_PAYLOAD)
+        def webhookPayload = readJSON text: env.JSON_PAYLOAD
 
 
-        def gitUrl = webhookPayload.repository?.ssh_url
-        def branch = webhookPayload.ref.tokenize('/').last()
-        def appName = webhookPayload.repository?.name
+        // def gitUrl = webhookPayload.repository?.ssh_url
+        // def branch = webhookPayload.ref.tokenize('/').last()
+        // def appName = webhookPayload.repository?.name
 
-        stage('Get source code') {
-            checkout([
-                $class: 'GitSCM',
-                branches: [[name: branch]],
-                userRemoteConfigs: [[
-                    url: gitUrl,
-                    credentialsId: 'git-ssh'
-                ]],
-            ]);
-            sh "ls -la"
-        }
+        // stage('Get source code') {
+        //     checkout([
+        //         $class: 'GitSCM',
+        //         branches: [[name: branch]],
+        //         userRemoteConfigs: [[
+        //             url: gitUrl,
+        //             credentialsId: 'git-ssh'
+        //         ]],
+        //     ]);
+        //     sh "ls -la"
+        // }
     }
 }
