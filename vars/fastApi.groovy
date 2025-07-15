@@ -9,18 +9,17 @@ def call () {
 
         def webhookPayload = new JsonSlurper().parseText(env.JSON_PAYLOAD)
 
-        def context = init(webhookPayload)
 
-        echo "${context.gitUrl}"
-        echo "${context.branch}"
-        echo "${context.appName}"
+        def gitUrl = webhookPayload.repository?.ssh_url
+        def branch = webhookPayload.ref.tokenize('/').last()
+        def appName = webhookPayload.repository?.name
 
         stage('Get source code') {
             checkout([
                 $class: 'GitSCM',
                 branches: [[name: context.branch]],
                 userRemoteConfigs: [[
-                    url: context.gitUrl,
+                    url: gitUrl,
                     credentialsId: 'git-ssh'
                 ]],
             ]);
