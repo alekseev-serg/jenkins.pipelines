@@ -12,7 +12,6 @@ def call () {
         echo "BRANCH: ${context.branch}"
         echo "APP NAME: ${context.appName}"
         echo "COMMIT: ${context.commit}"
-        echo "CONFIG: ${env.CONFIG_FILE}"
 
         stage('Get source code') {
             checkout([
